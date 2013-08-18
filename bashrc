@@ -63,3 +63,6 @@ export PATH=$PATH:~/bin/:~Code/go/bin
 alias l=ls
 alias cpwd='pwd | pbcopy'
 alias cdwd='cd `pbpaste`'
+
+# Jumping
+. ~/.jumping

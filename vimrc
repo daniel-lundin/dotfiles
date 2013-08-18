@@ -14,6 +14,9 @@ Bundle 'jelera/vim-javascript-syntax'
 Bundle 'mattn/zencoding-vim'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'scrooloose/nerdtree'
+" vim-scripts repos
+Bundle 'L9'
+Bundle 'FuzzyFinder'
 
 " Powerline setup
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
@@ -21,6 +24,10 @@ set laststatus=2
 
 " NERDTree hotkey
 nmap <leader>n :NERDTreeToggle<CR>
+
+" fuzzyfunder hotkey
+nmap <leader>f :FufFile<CR>
+nmap <leader>b :FufBuffer<CR>
 
 filetype plugin indent on
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 expandtab
@@ -46,3 +53,4 @@ let g:solarized_termcolors = 256
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
 colorscheme solarized
+
