@@ -17,6 +17,7 @@ Bundle 'scrooloose/nerdtree'
 " vim-scripts repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'
+Bundle 'wookiehangover/jshint.vim'
 
 " Powerline setup
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
@@ -34,6 +35,8 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2 expandtab
 autocmd FileType css setlocal shiftwidth=2 tabstop=2 expandtab
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 expandtab
 autocmd FileType jade setlocal shiftwidth=2 tabstop=2 expandtab
+autocmd FileType tex setlocal shiftwidth=4 tabstop=4 expandtab
+autocmd FileType matlab setlocal shiftwidth=2 tabstop=2 expandtab
 
 set number
 set ruler
@@ -44,6 +47,8 @@ set smartcase
 set wrap
 set cursorline
 set hidden
+set noswapfile
+set scrolloff=10
 syntax on
 
 set t_Co=256

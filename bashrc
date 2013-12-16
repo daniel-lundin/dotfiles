@@ -60,9 +60,21 @@ export GOPATH=~/Code/go
 export PATH=$PATH:~/bin/:~Code/go/bin
 
 # Some aliases
+alias la='ls -a'
+alias ll='ls -l'
 alias l=ls
 alias cpwd='pwd | pbcopy'
 alias cdwd='cd `pbpaste`'
 
+
+
+
 # Jumping
 . ~/.jumping
+
+export PATH=/Users/daniel/bin/Sencha/Cmd/3.1.2.342:$PATH
+
+export SENCHA_CMD_3_0_0="/Users/daniel/bin/Sencha/Cmd/3.1.2.342"
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
