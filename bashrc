@@ -65,6 +65,8 @@ alias ll='ls -l'
 alias l=ls
 alias cpwd='pwd | pbcopy'
 alias cdwd='cd `pbpaste`'
+alias ..="cd .."
+alias ...="cd ../.."
 
 
 
@@ -75,6 +77,9 @@ alias cdwd='cd `pbpaste`'
 export PATH=/Users/daniel/bin/Sencha/Cmd/3.1.2.342:$PATH
 
 export SENCHA_CMD_3_0_0="/Users/daniel/bin/Sencha/Cmd/3.1.2.342"
+
+# Pip installs with c-extensions fail on with new clang
+export ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
