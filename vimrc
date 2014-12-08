@@ -60,6 +60,7 @@ autocmd FileType cpp setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType openscad setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType php setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType stylus setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+autocmd FileType ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
 set number
 set ruler
