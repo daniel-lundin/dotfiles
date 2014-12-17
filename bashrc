@@ -34,9 +34,14 @@ function set_git_branch() {
   fi
 }
 
+function set_hostname () {
+  HOSTNAME=`hostname -s`
+}
+
 function set_prompt() {
   set_git_branch
   set_virtualenv
+  set_hostname
 
   local BLACK="\[\033[0;30m\]"
   local BLACKBOLD="\[\033[1;30m\]"
@@ -54,7 +59,7 @@ function set_prompt() {
   local CYANBOLD="\[\033[1;36m\]"
   local WHITE="\[\033[0;37m\]"
   local WHITEBOLD="\[\033[1;37m\]"
-  export PS1="$PYTHON_VIRTUALENV$REDBOLD[\A]$GIT_BRANCH$GREENBOLD \W\[\033[00m\]> "
+  export PS1="[$HOSTNAME] $PYTHON_VIRTUALENV$REDBOLD[\A]$GIT_BRANCH$GREENBOLD \W\[\033[00m\]> "
 }
 PROMPT_COMMAND=set_prompt
 
