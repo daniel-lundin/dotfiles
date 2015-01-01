@@ -59,6 +59,12 @@ function set_prompt() {
   local CYANBOLD="\[\033[1;36m\]"
   local WHITE="\[\033[0;37m\]"
   local WHITEBOLD="\[\033[1;37m\]"
+
+  if [ "$HOSTNAME" == "daniel" ]; then
+	  HOSTNAME="$GREENBOLD$HOSTNAME"
+  else
+	  HOSTNAME="$PURPLEBOLD$HOSTNAME"
+  fi
   export PS1="[$HOSTNAME] $PYTHON_VIRTUALENV$REDBOLD[\A]$GIT_BRANCH$GREENBOLD \W\[\033[00m\]> "
 }
 PROMPT_COMMAND=set_prompt
