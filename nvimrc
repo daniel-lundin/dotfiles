@@ -1,35 +1,38 @@
-set nocompatible
-filetype off
+set nocompatible              " be iMproved, required
+filetype off                  " required
+let mapleader=" "
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.nvim/bundle/Vundle.vim
+call vundle#begin()
 
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdtree'
+Plugin 'kien/ctrlp.vim'
+Plugin 'wavded/vim-stylus'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'bling/vim-airline'
 
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-"Bundle 'klen/python-mode'
-Bundle 'wincent/Command-T'
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'mattn/zencoding-vim'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'scrooloose/nerdtree'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'hail2u/vim-css3-syntax'
-Bundle 'groenewege/vim-less'
-Bundle 'torrancew/vim-openscad'
-Bundle 'kien/ctrlp.vim'
-Bundle 'wavded/vim-stylus'
-Bundle 'davidhalter/jedi-vim'
-Bundle 'jelera/vim-javascript-syntax'
-" vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-"Bundle 'wookiehangover/jshint.vim'
-Bundle 'Rip-Rip/clang_complete'
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
-let g:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
+
 
 " ctrl p excludes
 let g:ctrlp_custom_ignore = {
@@ -37,12 +40,11 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 let g:ctrlp_switch_buffer = 0
+nmap <leader>b :CtrlPBuffer<CR>
+nmap <leader>p :CtrlP<CR>
+
 " NERDTree hotkey
 nmap <leader>n :NERDTreeToggle<CR>
-
-" fuzzyfunder hotkey
-nmap <leader>f :FufFile<CR>
-nmap <leader>b :FufBuffer<CR>
 
 filetype plugin indent on
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
@@ -76,16 +78,20 @@ set scrolloff=10
 syntax on
 
 
-set t_Co=256
-set background=dark
 " solarized options 
+set background=dark
 let g:solarized_termcolors = 256
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
 colorscheme solarized
 
-let g:pep8_ignore="E501,W601"
-
-" Powerline setup
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
+"Syntastic settings
 set laststatus=2
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+
