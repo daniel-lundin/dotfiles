@@ -1,16 +1,16 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
 " let Vundle manage Vundle
 " required! 
 Bundle 'gmarik/vundle'
 
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 "Bundle 'klen/python-mode'
-Bundle 'wincent/Command-T'
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'mattn/zencoding-vim'
 Bundle 'digitaltoad/vim-jade'
@@ -22,10 +22,12 @@ Bundle 'torrancew/vim-openscad'
 Bundle 'kien/ctrlp.vim'
 Bundle 'wavded/vim-stylus'
 Bundle 'davidhalter/jedi-vim'
+Bundle 'isRuslan/vim-es6'
+Bundle 'scrooloose/syntastic'
 " vim-scripts repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'
-Bundle 'wookiehangover/jshint.vim'
+" Bundle 'wookiehangover/jshint.vim'
 Bundle 'Rip-Rip/clang_complete'
 
 let g:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
@@ -49,6 +51,7 @@ nmap <leader>b :FufBuffer<CR>
 filetype plugin indent on
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+autocmd FileType scss setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType less setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType jade setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
