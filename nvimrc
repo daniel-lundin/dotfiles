@@ -16,6 +16,10 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
+Plugin 'christophermca/meta5'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'tpope/vim-unimpaired'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -75,13 +79,15 @@ set cursorline
 set hidden
 set noswapfile
 set scrolloff=10
+set autoread
 syntax on
 
 
-" solarized options 
+" Color scheme
 set background=dark
 let g:solarized_termcolors = 256
-colorscheme solarized
+colorscheme molokai
+hi Visual term=reverse cterm=reverse guibg=Grey
 
 "Syntastic settings
 set laststatus=2
