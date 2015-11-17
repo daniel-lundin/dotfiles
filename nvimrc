@@ -20,6 +20,7 @@ Plugin 'christophermca/meta5'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'haya14busa/incsearch.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -37,6 +38,10 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 
+" incsearch mappings
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
 
 " ctrl p excludes
 let g:ctrlp_custom_ignore = {
@@ -52,6 +57,7 @@ nmap <leader>n :NERDTreeToggle<CR>
 
 filetype plugin indent on
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType less setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType scss setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
@@ -84,6 +90,9 @@ syntax on
 
 
 " Color scheme
+set t_Co=256
+set t_AB=^[[48;5;%dm
+set t_AF=^[[38;5;%dm
 set background=dark
 let g:solarized_termcolors = 256
 colorscheme molokai
