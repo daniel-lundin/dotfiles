@@ -98,4 +98,4 @@ export SENCHA_CMD_3_0_0="/Users/daniel/bin/Sencha/Cmd/3.1.2.342"
 export ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future
 
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="/usr/local/heroku/bin:$PATH:node_modules/.bin/"
