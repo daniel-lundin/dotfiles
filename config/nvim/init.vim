@@ -17,14 +17,20 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'bling/vim-airline'
 Plugin 'christophermca/meta5'
 Plugin 'digitaltoad/vim-jade'
-Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'haya14busa/incsearch.vim'
-Plugin 'neomake/neomake'
+" Plugin 'neomake/neomake'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'mxw/vim-jsx'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-surround'
+Plugin 'sirtaj/vim-openscad'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'jremmen/vim-ripgrep'
+Plugin 'arcticicestudio/nord-vim'
+Plugin 'w0rp/ale'
+" Plugin 'Galooshi/vim-import-js'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -41,6 +47,13 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+set listchars+=space:\ ,tab:\ \ ,trail:·,nbsp:␣
+
+"completion
+"
+" let g:EclimCompletionMethod = 'omnifunc'
+" Use deoplete.
+" let g:deoplete#enable_at_startup = 1
 
 " incsearch mappings
 map /  <Plug>(incsearch-forward)
@@ -52,6 +65,12 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  'node_modules'
   \ }
 
+if executable('rg')
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+endif
+
 let g:ctrlp_switch_buffer = 0
 nmap <leader>b :CtrlPBuffer<CR>
 nmap <leader>p :CtrlP<CR>
@@ -59,16 +78,12 @@ nmap <leader>p :CtrlP<CR>
 " NERDTree hotkey
 nmap <leader>n :NERDTreeToggle<CR>
 nmap <leader>F :NERDTreeFind<CR>
+
 "Ack hotkey
 nmap <leader>a :Ack 
 
-" clist shortcuts
-nmap <leader>c :cnext<CR> 
-nmap <leader>C :cprev<CR> 
-
-" eslint
-nmap <leader>e :!eslint --fix %<CR>
 filetype plugin indent on
+
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
@@ -87,6 +102,7 @@ autocmd FileType stylus setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType json setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
+set omnifunc=syntaxcomplete#Complete
 set number
 set ruler
 set hlsearch
@@ -101,22 +117,48 @@ set scrolloff=10
 set autoread
 syntax on
 
-
 " Color scheme
 set t_Co=256
 set t_AB=^[[48;5;%dm
 set t_AF=^[[38;5;%dm
 set background=dark
+colorscheme xoria256
 let g:solarized_termcolors = 256
-colorscheme molokai
+
 hi Visual term=reverse cterm=reverse guibg=Grey
 
 " Diffing
 set diffopt+=vertical
 
 " Neomake
-autocmd! BufWritePost,BufEnter * Neomake
-let g:neomake_javascript_enabled_makers = ['eslint']
+" autocmd CursorHold *.js :%!eslint_d --stdin<CR>
+" call neomake#configure#automake('nw', 750)
+" autocmd! BufWritePost,BufEnter * Neomake
+" let g:neomake_javascript_enabled_makers = ['eslint_d']
+
+let g:ale_fixers = {
+\   'javascript': ['eslint', 'prettier'],
+\}
 
 
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
 
+" Set this setting in vimrc if you want to fix files automatically on save.
+" This is off by default.
+let g:ale_fix_on_save = 1
+
+let g:ale_javascript_eslint_use_global = 1
+let g:ale_javascript_eslint_executable = 'eslint_d'
+let g:ale_javascript_prettier_use_global = 1
+let g:ale_javascript_prettier_executable = 'prettier_d'
+
+" eslint
+nnoremap <leader>e mF:%!eslint_d --stdin --fix-to-stdout<CR>`F
+" prettier
+nnoremap <leader>r :Prettier<CR>mF:%!eslint_d --stdin --fix-to-stdout<CR>`F
+
+" Allow for project specific vimrc
+set exrc
+set secure

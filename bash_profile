@@ -20,3 +20,5 @@ fi
 export PATH=/usr/local/bin:/Users/daniel/bin/Sencha/Cmd/3.1.2.342:$PATH
 
 export SENCHA_CMD_3_0_0="/Users/daniel/bin/Sencha/Cmd/3.1.2.342"
+
+export PATH="$HOME/.cargo/bin:$PATH"
