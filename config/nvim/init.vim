@@ -31,6 +31,9 @@ Plugin 'jremmen/vim-ripgrep'
 Plugin 'arcticicestudio/nord-vim'
 Plugin 'w0rp/ale'
 " Plugin 'Galooshi/vim-import-js'
+Plugin 'c9s/helper.vim'
+Plugin 'c9s/treemenu.vim'
+Plugin 'c9s/vikube.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -159,6 +162,8 @@ nnoremap <leader>e mF:%!eslint_d --stdin --fix-to-stdout<CR>`F
 " prettier
 nnoremap <leader>r :Prettier<CR>mF:%!eslint_d --stdin --fix-to-stdout<CR>`F
 
+" aboxd
+vnoremap <leader>a :!npx aboxd -<CR>
 " Allow for project specific vimrc
 set exrc
 set secure
