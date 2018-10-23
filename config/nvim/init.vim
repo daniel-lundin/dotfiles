@@ -3,7 +3,7 @@ filetype off                  " required
 let mapleader=" "
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.nvim/bundle/Vundle.vim
+set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
@@ -34,7 +34,6 @@ Plugin 'w0rp/ale'
 Plugin 'c9s/helper.vim'
 Plugin 'c9s/treemenu.vim'
 Plugin 'c9s/vikube.vim'
-Plugin 'w0rp/ale'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -169,6 +168,3 @@ vnoremap <leader>a :!npx aboxd -<CR>
 " Allow for project specific vimrc
 set exrc
 set secure
-||||||| merged common ancestors
-autocmd! BufWritePost,BufEnter * Neomake
-let g:neomake_javascript_enabled_makers = ['eslint']
