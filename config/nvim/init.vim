@@ -34,6 +34,7 @@ Plugin 'w0rp/ale'
 Plugin 'c9s/helper.vim'
 Plugin 'c9s/treemenu.vim'
 Plugin 'c9s/vikube.vim'
+Plugin 'w0rp/ale'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -87,6 +88,7 @@ nmap <leader>a :Ack
 
 filetype plugin indent on
 
+au BufNewFile,BufRead *.mjs set filetype=javascript
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
@@ -127,7 +129,7 @@ set t_AF=^[[38;5;%dm
 set background=dark
 colorscheme xoria256
 let g:solarized_termcolors = 256
-
+colorscheme molokai
 hi Visual term=reverse cterm=reverse guibg=Grey
 
 " Diffing
@@ -167,3 +169,6 @@ vnoremap <leader>a :!npx aboxd -<CR>
 " Allow for project specific vimrc
 set exrc
 set secure
+||||||| merged common ancestors
+autocmd! BufWritePost,BufEnter * Neomake
+let g:neomake_javascript_enabled_makers = ['eslint']
