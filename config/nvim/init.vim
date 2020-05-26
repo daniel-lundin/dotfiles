@@ -16,6 +16,7 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'bling/vim-airline'
 Plugin 'christophermca/meta5'
+Plugin 'chase/vim-ansible-yaml'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'haya14busa/incsearch.vim'
@@ -26,6 +27,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'sirtaj/vim-openscad'
 Plugin 'jelera/vim-javascript-syntax'
+Plugin 'styled-components/vim-styled-components'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'jremmen/vim-ripgrep'
 Plugin 'arcticicestudio/nord-vim'
@@ -33,13 +35,16 @@ Plugin 'w0rp/ale'
 " Plugin 'Galooshi/vim-import-js'
 Plugin 'c9s/helper.vim'
 Plugin 'c9s/treemenu.vim'
-Plugin 'c9s/vikube.vim'
+" Plugin 'c9s/vikube.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'morhetz/gruvbox'
+Bundle 'krisajenkins/vim-pipe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
-"filetype plugin on
+filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -50,7 +55,7 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-set listchars+=space:\ ,tab:\ \ ,trail:·,nbsp:␣
+" set listchars+=space:\ ,tab:\ \ ,trail:·,nbsp: 
 
 "completion
 "
@@ -58,10 +63,12 @@ set listchars+=space:\ ,tab:\ \ ,trail:·,nbsp:␣
 " Use deoplete.
 " let g:deoplete#enable_at_startup = 1
 
+
 " incsearch mappings
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
+vnoremap <leader>s y:Ack "<c-r>""<CR>
 
 " ctrl p excludes
 let g:ctrlp_custom_ignore = {
@@ -84,6 +91,17 @@ nmap <leader>F :NERDTreeFind<CR>
 
 "Ack hotkey
 nmap <leader>a :Ack 
+let g:ackprg ='ag --nogroup --nocolor --column --ignore-dir=node_modules'
+
+" vim splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+set splitbelow
+set splitright
+
 
 filetype plugin indent on
 
@@ -105,6 +123,7 @@ autocmd FileType php setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType stylus setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType json setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
 set omnifunc=syntaxcomplete#Complete
 set number
@@ -119,27 +138,24 @@ set hidden
 set noswapfile
 set scrolloff=10
 set autoread
-syntax on
+" syntax on
 
 " Color scheme
+set termguicolors
 set t_Co=256
 set t_AB=^[[48;5;%dm
 set t_AF=^[[38;5;%dm
 set background=dark
-colorscheme xoria256
-let g:solarized_termcolors = 256
-colorscheme molokai
+" set g:solarized_termcolors = 256
+colorscheme nord
 hi Visual term=reverse cterm=reverse guibg=Grey
 
 " Diffing
 set diffopt+=vertical
 
-" Neomake
-" autocmd CursorHold *.js :%!eslint_d --stdin<CR>
-" call neomake#configure#automake('nw', 750)
-" autocmd! BufWritePost,BufEnter * Neomake
-" let g:neomake_javascript_enabled_makers = ['eslint_d']
 
+" Set this setting in vimrc if you want to fix files automatically on save.
+" This is off by default.
 let g:ale_fixers = {
 \   'javascript': ['eslint', 'prettier'],
 \}
@@ -149,19 +165,17 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \}
 
-" Set this setting in vimrc if you want to fix files automatically on save.
-" This is off by default.
 let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
 
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
-let g:ale_javascript_prettier_use_global = 1
-let g:ale_javascript_prettier_executable = 'prettier_d'
+" let g:ale_javascript_prettier_use_global = 1
+" let g:ale_javascript_prettier_executable = 'prettier_d'
+let g:ale_javascript_prettier_use_local_config = 1
 
-" eslint
-nnoremap <leader>e mF:%!eslint_d --stdin --fix-to-stdout<CR>`F
-" prettier
-nnoremap <leader>r :Prettier<CR>mF:%!eslint_d --stdin --fix-to-stdout<CR>`F
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠️'
 
 " aboxd
 vnoremap <leader>a :!npx aboxd -<CR>

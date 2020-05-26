@@ -81,21 +81,25 @@ alias cdwd='cd `pbpaste`'
 alias ..="cd .."
 alias ...="cd ../.."
 alias vim=nvim
+alias jtags=”ctags -R app config lib && sed -i ‘’ -E ‘/^(if|switch|function|module\.exports|it|describe).+language:js$/d’ tags”
 
 
 
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+# source $(brew --prefix nvm)/nvm.sh
 
 # Jumping
 . ~/.jumping
 
-export PATH=/Users/daniel/bin/Sencha/Cmd/3.1.2.342:$PATH
-
-export SENCHA_CMD_3_0_0="/Users/daniel/bin/Sencha/Cmd/3.1.2.342"
-
 # Pip installs with c-extensions fail on with new clang
 export ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH:node_modules/.bin/"
+export PATH="./node_modules/.bin:~/Library/Python/3.7/bin:$PATH"
+export NVM_DIR=~/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[ -f /Users/d-dog/.nvm/versions/node/v11.0.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash ] && . /Users/d-dog/.nvm/versions/node/v11.0.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[ -f /Users/d-dog/.nvm/versions/node/v11.0.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash ] && . /Users/d-dog/.nvm/versions/node/v11.0.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash
