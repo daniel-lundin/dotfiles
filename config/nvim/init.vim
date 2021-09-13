@@ -3,45 +3,45 @@ filetype off                  " required
 let mapleader=" "
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.config/nvim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin()
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
-Plugin 'wavded/vim-stylus'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'bling/vim-airline'
-Plugin 'christophermca/meta5'
-Plugin 'chase/vim-ansible-yaml'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'haya14busa/incsearch.vim'
+Plug 'VundleVim/Vundle.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdtree'
+Plug 'kien/ctrlp.vim'
+Plug 'wavded/vim-stylus'
+Plug 'flazz/vim-colorschemes'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'bling/vim-airline'
+Plug 'christophermca/meta5'
+Plug 'chase/vim-ansible-yaml'
+Plug 'digitaltoad/vim-jade'
+Plug 'tpope/vim-unimpaired'
+Plug 'haya14busa/incsearch.vim'
 " Plugin 'neomake/neomake'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'mxw/vim-jsx'
-Plugin 'mileszs/ack.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'sirtaj/vim-openscad'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'styled-components/vim-styled-components'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'jremmen/vim-ripgrep'
-Plugin 'arcticicestudio/nord-vim'
-Plugin 'w0rp/ale'
+Plug 'easymotion/vim-easymotion'
+Plug 'mxw/vim-jsx'
+Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-surround'
+Plug 'sirtaj/vim-openscad'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'styled-components/vim-styled-components'
+Plug 'derekwyatt/vim-scala'
+Plug 'jremmen/vim-ripgrep'
+Plug 'arcticicestudio/nord-vim'
+" Plugin 'w0rp/ale'
 " Plugin 'Galooshi/vim-import-js'
-Plugin 'c9s/helper.vim'
-Plugin 'c9s/treemenu.vim'
+Plug 'c9s/helper.vim'
+Plug 'c9s/treemenu.vim'
 " Plugin 'c9s/vikube.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'morhetz/gruvbox'
-Bundle 'krisajenkins/vim-pipe'
+Plug 'airblade/vim-gitgutter'
+Plug 'morhetz/gruvbox'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 filetype plugin on
@@ -153,29 +153,6 @@ hi Visual term=reverse cterm=reverse guibg=Grey
 " Diffing
 set diffopt+=vertical
 
-
-" Set this setting in vimrc if you want to fix files automatically on save.
-" This is off by default.
-let g:ale_fixers = {
-\   'javascript': ['eslint', 'prettier'],
-\}
-
-
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\}
-
-let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 1
-
-let g:ale_javascript_eslint_use_global = 1
-let g:ale_javascript_eslint_executable = 'eslint_d'
-" let g:ale_javascript_prettier_use_global = 1
-" let g:ale_javascript_prettier_executable = 'prettier_d'
-let g:ale_javascript_prettier_use_local_config = 1
-
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚠️'
 
 " aboxd
 vnoremap <leader>a :!npx aboxd -<CR>
