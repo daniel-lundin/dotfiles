@@ -19,7 +19,7 @@ Plug 'chase/vim-ansible-yaml'
 Plug 'digitaltoad/vim-jade'
 Plug 'tpope/vim-unimpaired'
 Plug 'haya14busa/incsearch.vim'
-" Plugin 'neomake/neomake'
+
 Plug 'easymotion/vim-easymotion'
 Plug 'mxw/vim-jsx'
 Plug 'mileszs/ack.vim'
@@ -39,6 +39,10 @@ Plug 'airblade/vim-gitgutter'
 Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -46,22 +50,22 @@ filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 filetype plugin on
 "
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+" CoC mappings 
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
-" set listchars+=space:\ ,tab:\ \ ,trail:·,nbsp: 
 
-"completion
+" Telescope
 "
-" let g:EclimCompletionMethod = 'omnifunc'
-" Use deoplete.
-" let g:deoplete#enable_at_startup = 1
+"
+
+" require('telescope').load_extension('fzf')
+
+nnoremap <leader>p <cmd>Telescope find_files<cr>
+nnoremap <leader>g <cmd>Telescope live_grep<cr>
+nnoremap <leader>b <cmd>Telescope buffers<cr>
 
 
 " incsearch mappings
@@ -69,21 +73,6 @@ map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 vnoremap <leader>s y:Ack "<c-r>""<CR>
-
-" ctrl p excludes
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  'node_modules'
-  \ }
-
-if executable('rg')
-  set grepprg=rg\ --color=never
-  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-  let g:ctrlp_use_caching = 0
-endif
-
-let g:ctrlp_switch_buffer = 0
-nmap <leader>b :CtrlPBuffer<CR>
-nmap <leader>p :CtrlP<CR>
 
 " NERDTree hotkey
 nmap <leader>n :NERDTreeToggle<CR>
@@ -102,28 +91,7 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
-
 filetype plugin indent on
-
-au BufNewFile,BufRead *.mjs set filetype=javascript
-autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-autocmd FileType less setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-autocmd FileType scss setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-autocmd FileType jade setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
-autocmd FileType tex setlocal shiftwidth=4 tabstop=4 softtabstop=2 expandtab
-autocmd FileType matlab setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-autocmd FileType c setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-autocmd FileType cpp setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-autocmd FileType openscad setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-autocmd FileType php setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-autocmd FileType stylus setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-autocmd FileType ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-autocmd FileType json setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
 set omnifunc=syntaxcomplete#Complete
 set number
@@ -138,7 +106,6 @@ set hidden
 set noswapfile
 set scrolloff=10
 set autoread
-" syntax on
 
 " Color scheme
 set termguicolors
