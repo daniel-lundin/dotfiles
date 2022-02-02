@@ -42,7 +42,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-
+Plug 'fatih/vim-go'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -51,10 +51,40 @@ filetype plugin indent on    " required
 filetype plugin on
 "
 " CoC mappings 
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" tab completion
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+nmap <leader>ac  <Plug>(coc-codeaction)
+inoremap <leader-space> coc#refresh()
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
 
 
 " Telescope
@@ -81,6 +111,12 @@ nmap <leader>F :NERDTreeFind<CR>
 "Ack hotkey
 nmap <leader>a :Ack 
 let g:ackprg ='ag --nogroup --nocolor --column --ignore-dir=node_modules'
+
+" Airline
+let g:airline#extensions#branch#displayed_head_limit = 10
+let g:airline#extensions#branch#format = 1
+let g:airline#extensions#hunks#enabled = 0
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 
 " vim splits
 nnoremap <C-J> <C-W><C-J>
